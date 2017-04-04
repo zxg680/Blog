@@ -12,55 +12,55 @@ import ssm.blog.entity.Blog;
 import ssm.blog.service.BlogService;
 
 /**
- * @Description ≤©øÕService µœ÷¿‡
+ * @Description ÂçöÂÆ¢ServiceÂÆûÁé∞Á±ª
  * @author Ni Shengwu
  *
  */
 @Service("blogService")
 public class BlogServiceImpl implements BlogService {
 
-	@Resource
-	private BlogDao blogDao;
-	
-	public List<Blog> getBlogData() {
+    @Resource
+    private BlogDao blogDao;
 
-		return blogDao.getBlogData();
-	}
+    public List<Blog> getBlogData() {
 
-	public List<Blog> listBlog(Map<String, Object> map) {
-		return blogDao.listBlog(map);
-	}
+        return blogDao.getBlogData();
+    }
 
-	public Long getTotal(Map<String, Object> map) {
-		return blogDao.getTotal(map);
-	}
+    public List<Blog> listBlog(Map<String, Object> map) {
+        return blogDao.listBlog(map);
+    }
 
-	public Blog findById(Integer id) {
-		return blogDao.findById(id);
-	}
+    public Long getTotal(Map<String, Object> map) {
+        return blogDao.getTotal(map);
+    }
 
-	public Integer update(Blog blog) {
-		return blogDao.update(blog);
-	}
+    public Blog findById(Integer id) {
+        return blogDao.findById(id);
+    }
 
-	public Blog getPrevBlog(Integer id) {
-		return blogDao.getPrevBlog(id);
-	}
+    public Integer update(Blog blog) {
+        return blogDao.update(blog);
+    }
 
-	public Blog getNextBlog(Integer id) {
-		return blogDao.getNextBlog(id);
-	}
+    public Blog getPrevBlog(Integer id) {
+        return blogDao.getPrevBlog(id);
+    }
 
-	public Integer addBlog(Blog blog) {
-		return blogDao.addBlog(blog);
-	}
+    public Blog getNextBlog(Integer id) {
+        return blogDao.getNextBlog(id);
+    }
 
-	public Integer deleteBlog(Integer id) {
-		return blogDao.deleteBlog(id);
-	}
+    public Integer addBlog(Blog blog) {
+        return blogDao.addBlog(blog);
+    }
 
-	public Integer getBlogByTypeId(Integer typeId) {
-		return blogDao.getBlogByTypeId(typeId);
-	}
+    public Integer deleteBlog(Integer id) {
+        return blogDao.deleteBlog(id);
+    }
+
+    public Integer getBlogByTypeId(Integer typeId) {
+        return blogDao.getBlogByTypeId(typeId);
+    }
 
 }

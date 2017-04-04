@@ -23,7 +23,7 @@ import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
 /**
- * @Description ²©¿ÍController²ã
+ * @Description åšå®¢Controllerå±‚
  * @author Ni Shengwu
  *
  */
@@ -31,83 +31,76 @@ import ssm.blog.util.StringUtil;
 @RequestMapping("/blog")
 public class BlogController {
 
-	@Resource
-	private BlogService blogService;
-	@Resource
-	private CommentService commentService;
+    @Resource
+    private BlogService blogService;
+    @Resource
+    private CommentService commentService;
 
-	private BlogIndex blogIndex = new BlogIndex();
+    private BlogIndex blogIndex = new BlogIndex();
 
-	// ÇëÇó²©¿ÍÏêÏ¸ĞÅÏ¢
-	@RequestMapping("/articles/{id}")
-	public ModelAndView details(@PathVariable("id") Integer id,
-			HttpServletRequest request) {
+    // è¯·æ±‚åšå®¢è¯¦ç»†ä¿¡æ¯
+    @RequestMapping("/articles/{id}")
+    public ModelAndView details(@PathVariable("id") Integer id, HttpServletRequest request) {
 
-		ModelAndView modelAndView = new ModelAndView();
-		Blog blog = blogService.findById(id); // ¸ù¾İid»ñÈ¡²©¿Í
+        ModelAndView modelAndView = new ModelAndView();
+        Blog blog = blogService.findById(id); // æ ¹æ®idè·å–åšå®¢
 
-		// »ñÈ¡¹Ø¼ü×Ö
-		String keyWords = blog.getKeyWord();
-		if (StringUtil.isNotEmpty(keyWords)) {
-			String[] strArray = keyWords.split(" ");
-			List<String> keyWordsList = StringUtil.filterWhite(Arrays
-					.asList(strArray));
-			modelAndView.addObject("keyWords", keyWordsList);
-		} else {
-			modelAndView.addObject("keyWords", null);
-		}
+        // è·å–å…³é”®å­—
+        String keyWords = blog.getKeyWord();
+        if (StringUtil.isNotEmpty(keyWords)) {
+            String[] strArray = keyWords.split(" ");
+            List<String> keyWordsList = StringUtil.filterWhite(Arrays.asList(strArray));
+            modelAndView.addObject("keyWords", keyWordsList);
+        } else {
+            modelAndView.addObject("keyWords", null);
+        }
 
-		modelAndView.addObject("blog", blog);
-		blog.setClickHit(blog.getClickHit() + 1); // ½«²©¿Í·ÃÎÊÁ¿¼Ó1
-		blogService.update(blog); // ¸üĞÂ²©¿Í
+        modelAndView.addObject("blog", blog);
+        blog.setClickHit(blog.getClickHit() + 1); // å°†åšå®¢è®¿é—®é‡åŠ 1
+        blogService.update(blog); // æ›´æ–°åšå®¢
 
-		// ²éÑ¯ÆÀÂÛĞÅÏ¢
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("blogId", blog.getId());
-		map.put("state", 1);
-		List<Comment> commentList = commentService.getCommentData(map);
+        // æŸ¥è¯¢è¯„è®ºä¿¡æ¯
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("blogId", blog.getId());
+        map.put("state", 1);
+        List<Comment> commentList = commentService.getCommentData(map);
 
-		modelAndView.addObject("commentList", commentList);
-		modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
-		modelAndView.addObject("title", blog.getTitle() + " - ÄßÉıÎäµÄ²©¿Í");
+        modelAndView.addObject("commentList", commentList);
+        modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
+        modelAndView.addObject("title", blog.getTitle() + " - å€ªå‡æ­¦çš„åšå®¢");
 
-		// ´æÈëÉÏÒ»ÆªºÍÏÂÒ»ÆªµÄÏÔÊ¾´úÂë
-		modelAndView.addObject("pageCode", PageUtil.getPrevAndNextPageCode(
-				blogService.getPrevBlog(id), blogService.getNextBlog(id),
-				request.getServletContext().getContextPath()));
+        // å­˜å…¥ä¸Šä¸€ç¯‡å’Œä¸‹ä¸€ç¯‡çš„æ˜¾ç¤ºä»£ç 
+        modelAndView.addObject("pageCode", PageUtil.getPrevAndNextPageCode(blogService.getPrevBlog(id),
+                blogService.getNextBlog(id), request.getServletContext().getContextPath()));
 
-		modelAndView.setViewName("mainTemp");
+        modelAndView.setViewName("mainTemp");
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
 
-	// ¸ù¾İ¹Ø¼ü×Ö²éÑ¯²©¿ÍĞÅÏ¢
-	@RequestMapping("/search")
-	public ModelAndView search(
-			@RequestParam(value = "q", required = false) String q,
-			@RequestParam(value = "page", required = false) String page,
-			HttpServletRequest request) throws Exception {
+    // æ ¹æ®å…³é”®å­—æŸ¥è¯¢åšå®¢ä¿¡æ¯
+    @RequestMapping("/search")
+    public ModelAndView search(@RequestParam(value = "q", required = false) String q,
+            @RequestParam(value = "page", required = false) String page, HttpServletRequest request) throws Exception {
 
-		int pageSize = 10;
-		ModelAndView modelAndView = new ModelAndView();
-		List<Blog> blogIndexList = blogIndex.searchBlog(q);
-		if(page == null) { //pageÎª¿Õ±íÊ¾µÚÒ»´ÎËÑË÷
-			page = "1";
-		}
-		int fromIndex = (Integer.parseInt(page) - 1) * pageSize; // ¿ªÊ¼Ë÷Òı
-		int toIndex = blogIndexList.size() >= Integer.parseInt(page) * pageSize ? Integer
-				.parseInt(page) * pageSize
-				: blogIndexList.size();
-		modelAndView.addObject("blogIndexList", blogIndexList.subList(fromIndex, toIndex));
-		modelAndView.addObject("pageCode", PageUtil.getUpAndDownPageCode(
-				Integer.parseInt(page), blogIndexList.size(), q, pageSize,
-				request.getServletContext().getContextPath()));
-		modelAndView.addObject("q", q); // ÓÃÓÚÊı¾İµÄ»ØÏÔ
-		modelAndView.addObject("resultTotal", blogIndexList.size()); // ²éÑ¯µ½µÄ×Ü¼ÇÂ¼Êı
-		modelAndView.addObject("commonPage", "foreground/blog/searchResult.jsp");
-		modelAndView.addObject("title", "ËÑË÷'" + q + "'µÄ½á¹û - ÄßÉıÎäµÄ²©¿Í");
-		modelAndView.setViewName("mainTemp");
-		return modelAndView;
-	}
+        int pageSize = 10;
+        ModelAndView modelAndView = new ModelAndView();
+        List<Blog> blogIndexList = blogIndex.searchBlog(q);
+        if (page == null) { // pageä¸ºç©ºè¡¨ç¤ºç¬¬ä¸€æ¬¡æœç´¢
+            page = "1";
+        }
+        int fromIndex = (Integer.parseInt(page) - 1) * pageSize; // å¼€å§‹ç´¢å¼•
+        int toIndex = blogIndexList.size() >= Integer.parseInt(page) * pageSize ? Integer.parseInt(page) * pageSize
+                : blogIndexList.size();
+        modelAndView.addObject("blogIndexList", blogIndexList.subList(fromIndex, toIndex));
+        modelAndView.addObject("pageCode", PageUtil.getUpAndDownPageCode(Integer.parseInt(page), blogIndexList.size(),
+                q, pageSize, request.getServletContext().getContextPath()));
+        modelAndView.addObject("q", q); // ç”¨äºæ•°æ®çš„å›æ˜¾
+        modelAndView.addObject("resultTotal", blogIndexList.size()); // æŸ¥è¯¢åˆ°çš„æ€»è®°å½•æ•°
+        modelAndView.addObject("commonPage", "foreground/blog/searchResult.jsp");
+        modelAndView.addObject("title", "æœç´¢'" + q + "'çš„ç»“æœ - å€ªå‡æ­¦çš„åšå®¢");
+        modelAndView.setViewName("mainTemp");
+        return modelAndView;
+    }
 
 }

@@ -3,16 +3,16 @@ package ssm.blog.service;
 import ssm.blog.entity.Blogger;
 
 /**
- * @Description 博主Service接口
+ * @Description 鍗氫富Service鎺ュ彛
  * @author Ni Shengwu
  *
  */
 public interface BloggerService {
 
-	public Blogger getByUsername(String username);
+    public Blogger getByUsername(String username);
 
-	public Blogger getBloggerData();
+    public Blogger getBloggerData();
 
-	// 更新博主个人信息
-	public Integer updateBlogger(Blogger blogger);
+    // 鏇存柊鍗氫富涓汉淇℃伅
+    public Integer updateBlogger(Blogger blogger);
 }

@@ -4,48 +4,48 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @Description ÈÕÆÚ¹¤¾ßÀà
+ * @Description æ—¥æœŸå·¥å…·ç±»
  * @author Ni Shengwu
  *
  */
 public class DateUtil {
 
-	/**
-	 * ÈÕÆÚ¶ÔÏó×ª×Ö·û´®
-	 * @author Ni Shengwu
-	 * @param date
-	 * @param format
-	 * @return
-	 */
-	public static String formatDate(Date date,String format){
-		String result="";
-		SimpleDateFormat sdf=new SimpleDateFormat(format);
-		if(date!=null){
-			result=sdf.format(date);
-		}
-		return result;
-	}
-	
-	/**
-	 * ×Ö·û´®×ªÈÕÆÚ¶ÔÏó
-	 * @author Ni Shengwu
-	 * @param str
-	 * @param format
-	 * @return
-	 * @throws Exception
-	 */
-	public static Date formatString(String str,String format) throws Exception{
-		if(StringUtil.isEmpty(str)){
-			return null;
-		}
-		SimpleDateFormat sdf=new SimpleDateFormat(format);
-		return sdf.parse(str);
-	}
-	
-	public static String getCurrentDateStr()throws Exception{
-		Date date=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
-		return sdf.format(date);
-	}
-	
+    /**
+     * æ—¥æœŸå¯¹è±¡è½¬å­—ç¬¦ä¸²
+     * @author Ni Shengwu
+     * @param date
+     * @param format
+     * @return
+     */
+    public static String formatDate(Date date, String format) {
+        String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        if (date != null) {
+            result = sdf.format(date);
+        }
+        return result;
+    }
+
+    /**
+     * å­—ç¬¦ä¸²è½¬æ—¥æœŸå¯¹è±¡
+     * @author Ni Shengwu
+     * @param str
+     * @param format
+     * @return
+     * @throws Exception
+     */
+    public static Date formatString(String str, String format) throws Exception {
+        if (StringUtil.isEmpty(str)) {
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.parse(str);
+    }
+
+    public static String getCurrentDateStr() throws Exception {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        return sdf.format(date);
+    }
+
 }

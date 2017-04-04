@@ -21,7 +21,7 @@ import ssm.blog.util.DateUtil;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description ¹ÜÀíÔ±²©Ö÷Controller²ã£¬ÐèÒªÉí·ÝÈÏÖ¤
+ * @Description ç®¡ç†å‘˜åšä¸»Controllerå±‚ï¼Œéœ€è¦èº«ä»½è®¤è¯
  * @author Ni Shengwu
  *
  */
@@ -29,68 +29,64 @@ import ssm.blog.util.ResponseUtil;
 @RequestMapping("/admin/blogger")
 public class BloggerAdminController {
 
-	@Resource
-	private BloggerService bloggerService;
-	
-	// ²éÑ¯²©Ö÷ÐÅÏ¢
-	@RequestMapping("/findBlogger")
-	public String findBlogger(HttpServletResponse response) throws Exception {
-		
-		Blogger blogger = bloggerService.getBloggerData();
-		JSONObject jsonObject = JSONObject.fromObject(blogger);
-		ResponseUtil.write(response, jsonObject);
-		return null;
-	}
-	
-	//ÐÞ¸Ä²©Ö÷ÐÅÏ¢
-	@RequestMapping("/save")
-	public String save(
-			@RequestParam("imageFile") MultipartFile imageFile,
-			Blogger blogger,
-			HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		
-		if(!imageFile.isEmpty()) { //Èç¹ûÓÃ»§ÓÐ´«¹ýÕÕÆ¬£¬¾Í¸üÐÂ
-			String filePath = request.getServletContext().getRealPath("/"); //»ñÈ¡·þÎñÆ÷¸ùÂ·¾¶
-			String imageName = DateUtil.getCurrentDateStr() + "." + imageFile.getOriginalFilename().split("\\.")[1];
-			imageFile.transferTo(new File(filePath + "static/userImages/" + imageName));
-			blogger.setImagename(imageName);
-		}
-		int resultTotal = bloggerService.updateBlogger(blogger);
-		JSONObject result = new JSONObject();
-		if(resultTotal > 0) {
-			result.put("success", true);
-		} else {
-			result.put("success", false);
-		}
-		ResponseUtil.write(response, result);
-		return null;
-	}
-	
-	//ÐÞ¸Ä²©Ö÷ÃÜÂë
-	@RequestMapping("/modifyPassword")
-	public String modifyPassword(
-			@RequestParam("password") String password,
-			HttpServletResponse response) throws Exception {
-		
-		Blogger blogger = new Blogger();
-		blogger.setPassword(CryptographyUtil.md5(password, "javacoder"));
-		int resultTotal = bloggerService.updateBlogger(blogger);
-		JSONObject result = new JSONObject();
-		if(resultTotal > 0) {
-			result.put("success", true);
-		} else {
-			result.put("success", false);
-		}
-		ResponseUtil.write(response, result);
-		return null;
-	}
-	
-	// ÍË³ö
-	@RequestMapping("/logout")
-	public String logout() throws Exception {
-		
-		SecurityUtils.getSubject().logout();
-		return "redirect:/login.jsp";
-	}
+    @Resource
+    private BloggerService bloggerService;
+
+    // æŸ¥è¯¢åšä¸»ä¿¡æ¯
+    @RequestMapping("/findBlogger")
+    public String findBlogger(HttpServletResponse response) throws Exception {
+
+        Blogger blogger = bloggerService.getBloggerData();
+        JSONObject jsonObject = JSONObject.fromObject(blogger);
+        ResponseUtil.write(response, jsonObject);
+        return null;
+    }
+
+    // ä¿®æ”¹åšä¸»ä¿¡æ¯
+    @RequestMapping("/save")
+    public String save(@RequestParam("imageFile") MultipartFile imageFile, Blogger blogger, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+        if (!imageFile.isEmpty()) { // å¦‚æžœç”¨æˆ·æœ‰ä¼ è¿‡ç…§ç‰‡ï¼Œå°±æ›´æ–°
+            String filePath = request.getServletContext().getRealPath("/"); // èŽ·å–æœåŠ¡å™¨æ ¹è·¯å¾„
+            String imageName = DateUtil.getCurrentDateStr() + "." + imageFile.getOriginalFilename().split("\\.")[1];
+            imageFile.transferTo(new File(filePath + "static/userImages/" + imageName));
+            blogger.setImagename(imageName);
+        }
+        int resultTotal = bloggerService.updateBlogger(blogger);
+        JSONObject result = new JSONObject();
+        if (resultTotal > 0) {
+            result.put("success", true);
+        } else {
+            result.put("success", false);
+        }
+        ResponseUtil.write(response, result);
+        return null;
+    }
+
+    // ä¿®æ”¹åšä¸»å¯†ç 
+    @RequestMapping("/modifyPassword")
+    public String modifyPassword(@RequestParam("password") String password, HttpServletResponse response)
+            throws Exception {
+
+        Blogger blogger = new Blogger();
+        blogger.setPassword(CryptographyUtil.md5(password, "javacoder"));
+        int resultTotal = bloggerService.updateBlogger(blogger);
+        JSONObject result = new JSONObject();
+        if (resultTotal > 0) {
+            result.put("success", true);
+        } else {
+            result.put("success", false);
+        }
+        ResponseUtil.write(response, result);
+        return null;
+    }
+
+    // é€€å‡º
+    @RequestMapping("/logout")
+    public String logout() throws Exception {
+
+        SecurityUtils.getSubject().logout();
+        return "redirect:/login.jsp";
+    }
 }

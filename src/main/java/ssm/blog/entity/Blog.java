@@ -5,130 +5,130 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @Description ²©¿ÍÊµÌå
+ * @Description åšå®¢å®ä½“
  * @author Ni Shengwu
  *
  */
 public class Blog {
 
-	private Integer id;
-	private String title;
-	private String summary;
-	private Date releaseDate;
-	private Integer clickHit;
-	private Integer replyHit;
-	private String content;
-	private String contentNoTag; //²»´ø±êÇ©µÄ²©¿ÍÄÚÈİ£¬ÓÃÓÚLuceneË÷ÒıÖĞ
-	private String keyWord; //¹Ø¼ü×Ö£¬ÓÃ¿Õ¸ñ¸ô¿ª
-	
-	private BlogType blogType; //²©¿ÍÀàĞÍ
-	private Integer blogCount; //²©¿ÍÊıÁ¿£¬·Ç²©¿ÍÊµ¼ÊÊôĞÔ£¬ÓÃÓÚ¸ù¾İ·¢²¼ÈÕÆÚ¹éµµ²éÑ¯
-	private String releaseDateStr; //·¢²¼ÈÕÆÚµÄ×Ö·û´®£¬Ö»È¡ÄêÔÂ
-	
-	private List<String> imageList = new LinkedList<String>();//²©¿ÍÀï´æµÄÍ¼Æ¬£¬Ö÷ÒªÓÃÓÚÕ¹Ê¾ËõÂÔÍ¼
+    private Integer id;
+    private String title;
+    private String summary;
+    private Date releaseDate;
+    private Integer clickHit;
+    private Integer replyHit;
+    private String content;
+    private String contentNoTag; // ä¸å¸¦æ ‡ç­¾çš„åšå®¢å†…å®¹ï¼Œç”¨äºLuceneç´¢å¼•ä¸­
+    private String keyWord; // å…³é”®å­—ï¼Œç”¨ç©ºæ ¼éš”å¼€
 
-	public Integer getId() {
-		return id;
-	}
+    private BlogType blogType; // åšå®¢ç±»å‹
+    private Integer blogCount; // åšå®¢æ•°é‡ï¼Œéåšå®¢å®é™…å±æ€§ï¼Œç”¨äºæ ¹æ®å‘å¸ƒæ—¥æœŸå½’æ¡£æŸ¥è¯¢
+    private String releaseDateStr; // å‘å¸ƒæ—¥æœŸçš„å­—ç¬¦ä¸²ï¼Œåªå–å¹´æœˆ
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private List<String> imageList = new LinkedList<String>();// åšå®¢é‡Œå­˜çš„å›¾ç‰‡ï¼Œä¸»è¦ç”¨äºå±•ç¤ºç¼©ç•¥å›¾
 
-	public String getTitle() {
-		return title;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getSummary() {
-		return summary;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public Date getReleaseDate() {
-		return releaseDate;
-	}
+    public String getSummary() {
+        return summary;
+    }
 
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
-	public Integer getClickHit() {
-		return clickHit;
-	}
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
 
-	public void setClickHit(Integer clickHit) {
-		this.clickHit = clickHit;
-	}
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
-	public Integer getReplyHit() {
-		return replyHit;
-	}
+    public Integer getClickHit() {
+        return clickHit;
+    }
 
-	public void setReplyHit(Integer replyHit) {
-		this.replyHit = replyHit;
-	}
+    public void setClickHit(Integer clickHit) {
+        this.clickHit = clickHit;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public Integer getReplyHit() {
+        return replyHit;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setReplyHit(Integer replyHit) {
+        this.replyHit = replyHit;
+    }
 
-	public String getKeyWord() {
-		return keyWord;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setKeyWord(String keyWord) {
-		this.keyWord = keyWord;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public BlogType getBlogType() {
-		return blogType;
-	}
+    public String getKeyWord() {
+        return keyWord;
+    }
 
-	public void setBlogType(BlogType blogType) {
-		this.blogType = blogType;
-	}
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
+    }
 
-	public Integer getBlogCount() {
-		return blogCount;
-	}
+    public BlogType getBlogType() {
+        return blogType;
+    }
 
-	public void setBlogCount(Integer blogCount) {
-		this.blogCount = blogCount;
-	}
+    public void setBlogType(BlogType blogType) {
+        this.blogType = blogType;
+    }
 
-	public String getReleaseDateStr() {
-		return releaseDateStr;
-	}
+    public Integer getBlogCount() {
+        return blogCount;
+    }
 
-	public void setReleaseDateStr(String releaseDateStr) {
-		this.releaseDateStr = releaseDateStr;
-	}
+    public void setBlogCount(Integer blogCount) {
+        this.blogCount = blogCount;
+    }
 
-	public List<String> getImageList() {
-		return imageList;
-	}
+    public String getReleaseDateStr() {
+        return releaseDateStr;
+    }
 
-	public void setImageList(List<String> imageList) {
-		this.imageList = imageList;
-	}
+    public void setReleaseDateStr(String releaseDateStr) {
+        this.releaseDateStr = releaseDateStr;
+    }
 
-	public String getContentNoTag() {
-		return contentNoTag;
-	}
+    public List<String> getImageList() {
+        return imageList;
+    }
 
-	public void setContentNoTag(String contentNoTag) {
-		this.contentNoTag = contentNoTag;
-	}
-	
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public String getContentNoTag() {
+        return contentNoTag;
+    }
+
+    public void setContentNoTag(String contentNoTag) {
+        this.contentNoTag = contentNoTag;
+    }
+
 }

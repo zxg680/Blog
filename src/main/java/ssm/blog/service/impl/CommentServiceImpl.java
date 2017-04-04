@@ -12,38 +12,38 @@ import ssm.blog.entity.Comment;
 import ssm.blog.service.CommentService;
 
 /**
- * @Description 用户评论service实现类
+ * @Description service
  * @author Ni Shengwu
  *
  */
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
-	
-	@Resource
-	private CommentDao commentDao;
 
-	public List<Comment> getCommentData(Map<String, Object> map) {
-		return commentDao.getCommentData(map);
-	}
+    @Resource
+    private CommentDao commentDao;
 
-	public int addComment(Comment comment) {
-		return commentDao.addComment(comment);
-	}
+    public List<Comment> getCommentData(Map<String, Object> map) {
+        return commentDao.getCommentData(map);
+    }
 
-	public Long getTotal(Map<String, Object> map) {
-		return commentDao.getTotal(map);
-	}
+    public int addComment(Comment comment) {
+        return commentDao.addComment(comment);
+    }
 
-	public Integer update(Comment comment) {
-		return commentDao.update(comment);
-	}
+    public Long getTotal(Map<String, Object> map) {
+        return commentDao.getTotal(map);
+    }
 
-	public Integer deleteComment(Integer id) {
-		return commentDao.deleteComment(id);
-	}
+    public Integer update(Comment comment) {
+        return commentDao.update(comment);
+    }
 
-	public Integer deleteCommentByBlogId(Integer blogId) {
-		return commentDao.deleteCommentByBlogId(blogId);
-	}
+    public Integer deleteComment(Integer id) {
+        return commentDao.deleteComment(id);
+    }
+
+    public Integer deleteCommentByBlogId(Integer blogId) {
+        return commentDao.deleteCommentByBlogId(blogId);
+    }
 
 }

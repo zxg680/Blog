@@ -3,54 +3,65 @@ package ssm.blog.entity;
 import java.util.Date;
 
 /**
- * @Description ÆÀÂÛÊµÌå
+ * @Description è¯„è®ºå®ä½“
  * @author Ni Shengwu
  *
  */
 public class Comment {
 
-	private Integer id;
-	private String userIp; //ÆÀÂÛÓÃ»§µÄip
-	private String content; //ÆÀÂÛÄÚÈİ
-	private Date commentDate; //ÆÀÂÛÈÕÆÚ
-	private Integer state; //ÉóºË×´Ì¬£¬0´ıÉóºË 1ÉóºËÍ¨¹ı 2Î´Í¨¹ı
-	private Blog blog; //¹ØÁªµÄ²©¿Í
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getUserIp() {
-		return userIp;
-	}
-	public void setUserIp(String userIp) {
-		this.userIp = userIp;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public Date getCommentDate() {
-		return commentDate;
-	}
-	public void setCommentDate(Date commentDate) {
-		this.commentDate = commentDate;
-	}
-	public Integer getState() {
-		return state;
-	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
-	public Blog getBlog() {
-		return blog;
-	}
-	public void setBlog(Blog blog) {
-		this.blog = blog;
-	}
+    private Integer id;
+    private String userIp; // è¯„è®ºç”¨æˆ·çš„ip
+    private String content; // è¯„è®ºå†…å®¹
+    private Date commentDate; // è¯„è®ºæ—¥æœŸ
+    private Integer state; // å®¡æ ¸çŠ¶æ€ï¼Œ0å¾…å®¡æ ¸ 1å®¡æ ¸é€šè¿‡ 2æœªé€šè¿‡
+    private Blog blog; // å…³è”çš„åšå®¢
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserIp() {
+        return userIp;
+    }
+
+    public void setUserIp(String userIp) {
+        this.userIp = userIp;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
 
 }

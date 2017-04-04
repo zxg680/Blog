@@ -42,12 +42,13 @@
 			</tr>
 			<tr>
 				<td>所属类别：</td>
-				<td><select id="blogTypeId" class="easyui-combobox"
+				<td><select id="blogTypeId" class="easyui-combobox" 
+				
 					name="blogType.id" style="width:154px" editable="false"
 					panelHeight="auto">
 						<option value="">请选择博客类别...</option>
-						<c:forEach items="${blogTypeList }" var="blogType">
-							<option value="${blogType.id }">${blogType.typeName }</option>
+						<c:forEach items="${rows }" var="blogType">
+							<option value="${id }">${typeName }</option>
 						</c:forEach>
 				</select></td>
 				<td></td>
@@ -76,6 +77,14 @@
 	<!-- 实例化编辑器 -->
 	<script type="text/javascript">
 		var ue = UE.getEditor('editor');
+		var url = "${pageContext.request.contextPath}/admin/blogType/listBlogType.do?page=1&rows=100";
+		$.getJSON(url, function(json) {
+		$('#blogTypeId').combobox({
+		data : json.rows,
+		valueField:'id',
+		textField:'typeName'
+		});
+		});
 	</script>
 	<script type="text/javascript">
 		function submitData() {

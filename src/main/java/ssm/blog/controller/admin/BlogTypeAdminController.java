@@ -21,7 +21,7 @@ import ssm.blog.service.BlogTypeService;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description ¹ÜÀíÔ±²©¿ÍÀà±ğController²ã
+ * @Description ç®¡ç†å‘˜åšå®¢ç±»åˆ«Controllerå±‚
  * @author Ni Shengwu
  *
  */
@@ -29,75 +29,71 @@ import ssm.blog.util.ResponseUtil;
 @RequestMapping("/admin/blogType")
 public class BlogTypeAdminController {
 
-	@Resource
-	private BlogTypeService blogTypeService;
-	@Resource
-	private BlogService blogService;
+    @Resource
+    private BlogTypeService blogTypeService;
+    @Resource
+    private BlogService blogService;
 
-	// ·ÖÒ³²éÑ¯²©¿ÍÀà±ğ
-	@RequestMapping("/listBlogType")
-	public String listBlogType(
-			@RequestParam(value = "page", required = false) String page,
-			@RequestParam(value = "rows", required = false) String rows,
-			HttpServletResponse response) throws Exception {
+    // åˆ†é¡µæŸ¥è¯¢åšå®¢ç±»åˆ«
+    @RequestMapping("/listBlogType")
+    public String listBlogType(@RequestParam(value = "page", required = false) String page,
+            @RequestParam(value = "rows", required = false) String rows, HttpServletResponse response)
+            throws Exception {
 
-		PageBean pageBean = new PageBean(Integer.parseInt(page),
-				Integer.parseInt(rows));
-		Map<String, Object> map = new HashMap<String, Object>();
+        PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
+        Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("start", pageBean.getStart());
-		map.put("pageSize", pageBean.getPageSize());
-		List<BlogType> blogTypeList = blogTypeService.listBlogType(map);
-		Long total = blogTypeService.getTotal(map);
+        map.put("start", pageBean.getStart());
+        map.put("pageSize", pageBean.getPageSize());
+        List<BlogType> blogTypeList = blogTypeService.listBlogType(map);
+        Long total = blogTypeService.getTotal(map);
 
-		JSONObject result = new JSONObject();
-		JSONArray jsonArray = JSONArray.fromObject(blogTypeList);
-		result.put("rows", jsonArray);
-		result.put("total", total);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+        JSONObject result = new JSONObject();
+        JSONArray jsonArray = JSONArray.fromObject(blogTypeList);
+        result.put("rows", jsonArray);
+        result.put("total", total);
+        ResponseUtil.write(response, result);
+        return null;
+    }
 
-	// Ìí¼ÓºÍ¸üĞÂ²©¿ÍÀà±ğ
-	@RequestMapping("/save")
-	public String save(BlogType blogType, HttpServletResponse response)
-			throws Exception {
+    // æ·»åŠ å’Œæ›´æ–°åšå®¢ç±»åˆ«
+    @RequestMapping("/save")
+    public String save(BlogType blogType, HttpServletResponse response) throws Exception {
 
-		int resultTotal = 0; // ½ÓÊÕ·µ»Ø½á¹û¼ÇÂ¼Êı
-		if (blogType.getId() == null) { // ËµÃ÷ÊÇµÚÒ»´Î²åÈë
-			resultTotal = blogTypeService.addBlogType(blogType);
-		} else { // ÓĞid±íÊ¾ĞŞ¸Ä
-			resultTotal = blogTypeService.updateBlogType(blogType);
-		}
+        int resultTotal = 0; // æ¥æ”¶è¿”å›ç»“æœè®°å½•æ•°
+        if (blogType.getId() == null) { // è¯´æ˜æ˜¯ç¬¬ä¸€æ¬¡æ’å…¥
+            resultTotal = blogTypeService.addBlogType(blogType);
+        } else { // æœ‰idè¡¨ç¤ºä¿®æ”¹
+            resultTotal = blogTypeService.updateBlogType(blogType);
+        }
 
-		JSONObject result = new JSONObject();
-		if (resultTotal > 0) {
-			result.put("success", true);
-		} else {
-			result.put("success", false);
-		}
-		ResponseUtil.write(response, result);
-		return null;
-	}
+        JSONObject result = new JSONObject();
+        if (resultTotal > 0) {
+            result.put("success", true);
+        } else {
+            result.put("success", false);
+        }
+        ResponseUtil.write(response, result);
+        return null;
+    }
 
-	// ²©¿ÍÀà±ğĞÅÏ¢É¾³ı
-	@RequestMapping("/delete")
-	public String deleteBlog(
-			@RequestParam(value = "ids", required = false) String ids,
-			HttpServletResponse response) throws Exception {
+    // åšå®¢ç±»åˆ«ä¿¡æ¯åˆ é™¤
+    @RequestMapping("/delete")
+    public String deleteBlog(@RequestParam(value = "ids", required = false) String ids, HttpServletResponse response)
+            throws Exception {
 
-		String[] idsStr = ids.split(",");
-		JSONObject result = new JSONObject();
-		for (int i = 0; i < idsStr.length; i++) {
-			int id = Integer.parseInt(idsStr[i]);
-			if(blogService.getBlogByTypeId(id) > 0) { //ËµÃ÷¸ÃÀà±ğÖĞÓĞ²©¿Í
-				result.put("exist", "¸ÃÀà±ğÏÂÓĞ²©¿Í£¬²»ÄÜÉ¾³ı!");
-			} else {
-				blogTypeService.deleteBlogType(id);
-			}		
-		}
-		result.put("success", true);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+        String[] idsStr = ids.split(",");
+        JSONObject result = new JSONObject();
+        for (int i = 0; i < idsStr.length; i++) {
+            int id = Integer.parseInt(idsStr[i]);
+            if (blogService.getBlogByTypeId(id) > 0) { // è¯´æ˜è¯¥ç±»åˆ«ä¸­æœ‰åšå®¢
+                result.put("exist", "è¯¥ç±»åˆ«ä¸‹æœ‰åšå®¢ï¼Œä¸èƒ½åˆ é™¤!");
+            } else {
+                blogTypeService.deleteBlogType(id);
+            }
+        }
+        result.put("success", true);
+        ResponseUtil.write(response, result);
+        return null;
+    }
 }

@@ -12,38 +12,38 @@ import ssm.blog.entity.Link;
 import ssm.blog.service.LinkService;
 
 /**
- * @Description ÓÑÇéÁ´½ÓServiceÊµÏÖÀà
+ * @Description å‹æƒ…é“¾æ¥Serviceå®ç°ç±»
  * @author Ni Shengwu
  *
  */
 @Service("linkService")
 public class LinkServiceImpl implements LinkService {
 
-	@Resource
-	private LinkDao linkDao;
-	
-	public List<Link> getLinkData() {
-		return linkDao.getLinkData();
-	}	
-	
-	public List<Link> listLinkData(Map<String, Object> map) {		
-		return linkDao.listLinkData(map);
-	}
+    @Resource
+    private LinkDao linkDao;
 
-	public Long getTotal(Map<String, Object> map) {
-		return linkDao.getTotal(map);
-	}
+    public List<Link> getLinkData() {
+        return linkDao.getLinkData();
+    }
 
-	public Integer addLink(Link link) {
-		return linkDao.addLink(link);
-	}
+    public List<Link> listLinkData(Map<String, Object> map) {
+        return linkDao.listLinkData(map);
+    }
 
-	public Integer updateLink(Link link) {
-		return linkDao.updateLink(link);
-	}
+    public Long getTotal(Map<String, Object> map) {
+        return linkDao.getTotal(map);
+    }
 
-	public Integer deleteLink(Integer id) {
-		return linkDao.deleteLink(id);
-	}
+    public Integer addLink(Link link) {
+        return linkDao.addLink(link);
+    }
+
+    public Integer updateLink(Link link) {
+        return linkDao.updateLink(link);
+    }
+
+    public Integer deleteLink(Integer id) {
+        return linkDao.deleteLink(id);
+    }
 
 }

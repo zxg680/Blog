@@ -12,40 +12,40 @@ import ssm.blog.entity.BlogType;
 import ssm.blog.service.BlogTypeService;
 
 /**
- * @Description ≤©øÕ¿‡±Service µœ÷¿‡
+ * @Description ÂçöÂÆ¢Á±ªÂà´ServiceÂÆûÁé∞Á±ª
  * @author Ni Shengwu
  *
  */
 @Service("blogTypeService")
 public class BlogTypeServiceImpl implements BlogTypeService {
-	
-	@Resource
-	private BlogTypeDao blogTypeDao;
 
-	//ªÒ»°≤©øÕ¿‡±–≈œ¢
-	public List<BlogType> getBlogTypeData() {
-		
-		return blogTypeDao.getBlogTypeData();
-	}
+    @Resource
+    private BlogTypeDao blogTypeDao;
 
-	public List<BlogType> listBlogType(Map<String, Object> map) {
-		return blogTypeDao.listBlogType(map);
-	}
+    // Ëé∑ÂèñÂçöÂÆ¢Á±ªÂà´‰ø°ÊÅØ
+    public List<BlogType> getBlogTypeData() {
 
-	public Long getTotal(Map<String, Object> map) {
-		return blogTypeDao.getTotal(map);
-	}
+        return blogTypeDao.getBlogTypeData();
+    }
 
-	public Integer addBlogType(BlogType blogType) {
-		return blogTypeDao.addBlogType(blogType);
-	}
+    public List<BlogType> listBlogType(Map<String, Object> map) {
+        return blogTypeDao.listBlogType(map);
+    }
 
-	public Integer updateBlogType(BlogType blogType) {
-		return blogTypeDao.updateBlogType(blogType);
-	}
+    public Long getTotal(Map<String, Object> map) {
+        return blogTypeDao.getTotal(map);
+    }
 
-	public Integer deleteBlogType(Integer id) {
-		return blogTypeDao.deleteBlogType(id);
-	}
+    public Integer addBlogType(BlogType blogType) {
+        return blogTypeDao.addBlogType(blogType);
+    }
+
+    public Integer updateBlogType(BlogType blogType) {
+        return blogTypeDao.updateBlogType(blogType);
+    }
+
+    public Integer deleteBlogType(Integer id) {
+        return blogTypeDao.deleteBlogType(id);
+    }
 
 }

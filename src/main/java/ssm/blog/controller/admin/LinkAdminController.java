@@ -20,7 +20,7 @@ import ssm.blog.service.LinkService;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description ¹ÜÀíÔ±ÓÑÇéÁ´½ÓController²ã
+ * @Description ç®¡ç†å‘˜å‹æƒ…é“¾æ¥Controllerå±‚
  * @author Ni Shengwu
  *
  */
@@ -28,68 +28,65 @@ import ssm.blog.util.ResponseUtil;
 @RequestMapping("/admin/link")
 public class LinkAdminController {
 
-	@Resource
-	private LinkService linkService;
-	// ·ÖÒ³²éÑ¯ÓÑÇéÁ´½Ó
-	@RequestMapping("/listLink")
-	public String listLink(
-			@RequestParam(value = "page", required = false) String page,
-			@RequestParam(value = "rows", required = false) String rows,
-			HttpServletResponse response) throws Exception {
+    @Resource
+    private LinkService linkService;
 
-		PageBean pageBean = new PageBean(Integer.parseInt(page),
-				Integer.parseInt(rows));
-		Map<String, Object> map = new HashMap<String, Object>();
+    // åˆ†é¡µæŸ¥è¯¢å‹æƒ…é“¾æ¥
+    @RequestMapping("/listLink")
+    public String listLink(@RequestParam(value = "page", required = false) String page,
+            @RequestParam(value = "rows", required = false) String rows, HttpServletResponse response)
+            throws Exception {
 
-		map.put("start", pageBean.getStart());
-		map.put("pageSize", pageBean.getPageSize());
-		List<Link> linkList = linkService.listLinkData(map);
-		Long total = linkService.getTotal(map);
+        PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
+        Map<String, Object> map = new HashMap<String, Object>();
 
-		JSONObject result = new JSONObject();
-		JSONArray jsonArray = JSONArray.fromObject(linkList);
-		result.put("rows", jsonArray);
-		result.put("total", total);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+        map.put("start", pageBean.getStart());
+        map.put("pageSize", pageBean.getPageSize());
+        List<Link> linkList = linkService.listLinkData(map);
+        Long total = linkService.getTotal(map);
 
-	// Ìí¼ÓºÍ¸üĞÂÓÑÇéÁ´½Ó
-	@RequestMapping("/save")
-	public String save(Link link, HttpServletResponse response)
-			throws Exception {
+        JSONObject result = new JSONObject();
+        JSONArray jsonArray = JSONArray.fromObject(linkList);
+        result.put("rows", jsonArray);
+        result.put("total", total);
+        ResponseUtil.write(response, result);
+        return null;
+    }
 
-		int resultTotal = 0; // ½ÓÊÕ·µ»Ø½á¹û¼ÇÂ¼Êı
-		if (link.getId() == null) { // ËµÃ÷ÊÇµÚÒ»´Î²åÈë
-			resultTotal = linkService.addLink(link);
-		} else { // ÓĞid±íÊ¾ĞŞ¸Ä
-			resultTotal = linkService.updateLink(link);
-		}
+    // æ·»åŠ å’Œæ›´æ–°å‹æƒ…é“¾æ¥
+    @RequestMapping("/save")
+    public String save(Link link, HttpServletResponse response) throws Exception {
 
-		JSONObject result = new JSONObject();
-		if (resultTotal > 0) {
-			result.put("success", true);
-		} else {
-			result.put("success", false);
-		}
-		ResponseUtil.write(response, result);
-		return null;
-	}
+        int resultTotal = 0; // æ¥æ”¶è¿”å›ç»“æœè®°å½•æ•°
+        if (link.getId() == null) { // è¯´æ˜æ˜¯ç¬¬ä¸€æ¬¡æ’å…¥
+            resultTotal = linkService.addLink(link);
+        } else { // æœ‰idè¡¨ç¤ºä¿®æ”¹
+            resultTotal = linkService.updateLink(link);
+        }
 
-	// ÓÑÇéÁ´½ÓĞÅÏ¢É¾³ı
-	@RequestMapping("/delete")
-	public String deleteLink(
-			@RequestParam(value = "ids", required = false) String ids,
-			HttpServletResponse response) throws Exception {
+        JSONObject result = new JSONObject();
+        if (resultTotal > 0) {
+            result.put("success", true);
+        } else {
+            result.put("success", false);
+        }
+        ResponseUtil.write(response, result);
+        return null;
+    }
 
-		String[] idsStr = ids.split(",");
-		JSONObject result = new JSONObject();
-		for (int i = 0; i < idsStr.length; i++) {
-			int id = Integer.parseInt(idsStr[i]);
-			linkService.deleteLink(id);	
-		}
-		result.put("success", true);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+    // å‹æƒ…é“¾æ¥ä¿¡æ¯åˆ é™¤
+    @RequestMapping("/delete")
+    public String deleteLink(@RequestParam(value = "ids", required = false) String ids, HttpServletResponse response)
+            throws Exception {
+
+        String[] idsStr = ids.split(",");
+        JSONObject result = new JSONObject();
+        for (int i = 0; i < idsStr.length; i++) {
+            int id = Integer.parseInt(idsStr[i]);
+            linkService.deleteLink(id);
+        }
+        result.put("success", true);
+        ResponseUtil.write(response, result);
+        return null;
+    }
 }

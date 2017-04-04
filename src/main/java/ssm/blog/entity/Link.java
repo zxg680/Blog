@@ -1,41 +1,47 @@
 package ssm.blog.entity;
 
 /**
- * @Description ÓÑÇéÁ´½ÓÊµÌå
+ * @Description å‹æƒ…é“¾æ¥å®ä½“
  * @author Ni Shengwu
  *
  */
 public class Link {
-	
-	private Integer id;
-	private String linkname; //Á´½ÓÃû³Æ
-	private String linkurl; //Á´½ÓµØÖ·
-	private Integer orderNum; //Á´½ÓÅÅĞòµÄĞòºÅ
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getLinkname() {
-		return linkname;
-	}
-	public void setLinkname(String linkname) {
-		this.linkname = linkname;
-	}
-	public String getLinkurl() {
-		return linkurl;
-	}
-	public void setLinkurl(String linkurl) {
-		this.linkurl = linkurl;
-	}
-	public Integer getOrder() {
-		return orderNum;
-	}
-	public void setOrder(Integer orderNum) {
-		this.orderNum = orderNum;
-	}
 
-	
+    private Integer id;
+    private String linkname; // é“¾æ¥åç§°
+    private String linkurl; // é“¾æ¥åœ°å€
+    private Integer orderNum; // é“¾æ¥æ’åºçš„åºå·
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLinkname() {
+        return linkname;
+    }
+
+    public void setLinkname(String linkname) {
+        this.linkname = linkname;
+    }
+
+    public String getLinkurl() {
+        return linkurl;
+    }
+
+    public void setLinkurl(String linkurl) {
+        this.linkurl = linkurl;
+    }
+
+    public Integer getOrder() {
+        return orderNum;
+    }
+
+    public void setOrder(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
+
 }

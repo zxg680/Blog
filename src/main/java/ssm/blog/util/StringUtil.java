@@ -4,64 +4,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description ×Ö·û´®¹¤¾ßÀà
+ * @Description å­—ç¬¦ä¸²å·¥å…·ç±»
  * @author 
  *
  */
 public class StringUtil {
 
-	/**
-	 * @Description ÅĞ¶ÏÊÇ·ñÊÇ¿Õ
-	 * @param str
-	 * @return
-	 */
-	public static boolean isEmpty(String str) {
-		if(str == null || "".equals(str.trim())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	/**
-	 * @Description ÅĞ¶ÏÊÇ·ñ²»ÊÇ¿Õ
-	 * @param str
-	 * @return
-	 */
-	public static boolean isNotEmpty(String str) {
-		if((str != null) && !"".equals(str.trim())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	/**
-	 * @Description ¸ñÊ½»¯Ä£ºı²éÑ¯
-	 * @param str
-	 * @return
-	 */
-	public static String formatLike(String str) {
-		if(isNotEmpty(str)) {
-			return "%" + str + "%";
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * @Description ¹ıÂËµô¼¯ºÏÀïµÄ¿Õ¸ñ
-	 * @param list
-	 * @return
-	 */
-	public static List<String> filterWhite(List<String> list) {
-		List<String> resultList = new ArrayList<String>();
-		for(String l : list) {
-			if(isNotEmpty(l)) {
-				resultList.add(l);
-			}
-		}
-		return resultList;
-	}
+    /**
+     * @Description åˆ¤æ–­æ˜¯å¦æ˜¯ç©º
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        if (str == null || "".equals(str.trim())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @Description åˆ¤æ–­æ˜¯å¦ä¸æ˜¯ç©º
+     * @param str
+     * @return
+     */
+    public static boolean isNotEmpty(String str) {
+        if ((str != null) && !"".equals(str.trim())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @Description æ ¼å¼åŒ–æ¨¡ç³ŠæŸ¥è¯¢
+     * @param str
+     * @return
+     */
+    public static String formatLike(String str) {
+        if (isNotEmpty(str)) {
+            return "%" + str + "%";
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @Description è¿‡æ»¤æ‰é›†åˆé‡Œçš„ç©ºæ ¼
+     * @param list
+     * @return
+     */
+    public static List<String> filterWhite(List<String> list) {
+        List<String> resultList = new ArrayList<String>();
+        for (String l : list) {
+            if (isNotEmpty(l)) {
+                resultList.add(l);
+            }
+        }
+        return resultList;
+    }
 
 }
